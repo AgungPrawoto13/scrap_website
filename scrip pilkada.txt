@@ -1,8 +1,24 @@
 pilkada gubernur dan walikota, bupati, disemua daerah di 2024 di setiap provinsi kabupaten kota, calon yang kemungkinan maju siapa aja
+
+#get content
+content_id = document.getElementById('mw-content-text')
+
+
 for (let x = 1; x <= 37; x++) {
-    for(let y = 0; y <= tes.getElementsByTagName("ul")[x].getElementsByTagName('a').length; y++){
-        console.log(tes.getElementsByTagName("ul")[x].getElementsByTagName('a')[y])
+    ulElement = content_id.getElementsByTagName("ul")[x]
+
+    if(ulElement){
+        anchor = ulElement.getElementsByTagName('a')
+        
+        for(let y = 0; y <= anchor.length; y++){
+
+            if(anchor[y] != undefined){
+                console.log(anchor[y].href)
+            }
+        }
     }
 }
 
-tes.getElementsByTagName("ul")[1].getElementsByTagName('a')[1].href
+#get single value in tag a
+
+content_id.getElementsByTagName("ul")[1].getElementsByTagName('a')[1].href
