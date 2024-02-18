@@ -42,26 +42,52 @@ I am scraping regional election (pilkada) data at the provincial and city/regenc
    ```bash
    git clone https://github.com/AgungPrawoto13/scrap_website.git
    ```
-
-2. **Open Link Website Pilkada**
-   Then select the three dots in the upper right corner, choose "More tools," and select "Developer Tools," or use Ctrl + Shift + I. Next,
-   choose the console and run the following script
+   
+2. **Create Virtual Environtment**
+   
+   Open the 'scrap_website' folder using VS Code and then run the following command in the terminal to create a virtual environment
    ```bash
-    content_id = document.getElementById('mw-content-text')
-
-    for (let x = 1; x <= 37; x++) {
-        ulElement = content_id.getElementsByTagName("ul")[x]
-    
-        if(ulElement){
-            anchor = ulElement.getElementsByTagName('a')
-            
-            for(let y = 0; y <= anchor.length; y++){
-    
-                if(anchor[y] != undefined){
-                    console.log(anchor[y].href)
-                }
-            }
-        }
-    }
+   python -m venv .venv
    ```
-   This script will retrieve all the links available at the city/regency level, then copy those links and save them into an Excel file
+   
+   If you are using macOS/Linux, you can use the following command instead
+    ```bash
+   python3 -m venv .venv
+   ```
+
+   Next, you can select the Python kernel with the format ('.venv':venv). Afterward, you can close the terminal and open it again. You should see the format (.venv)<your folder path>,
+   indicating that the virtual environment is now active
+
+3. **Install Requirements**
+   ```bash
+   pip install -r requirements.txt
+   ```
+   Run this code in the terminal to install the required dependencies module
+
+### Scrap data pilkada
+Open Link Website Pilkada
+https://id.wikipedia.org/wiki/Daftar_pemilihan_umum_kepala_daerah_di_Indonesia_2024#Tingkat_provinsi
+   
+Then select the three dots in the upper right corner, choose "More tools," and select "Developer Tools," or use Ctrl + Shift + I. Next,
+choose the console and run the following script
+```bash
+ content_id = document.getElementById('mw-content-text')
+
+ for (let x = 1; x <= 37; x++) {
+     ulElement = content_id.getElementsByTagName("ul")[x]
+ 
+     if(ulElement){
+         anchor = ulElement.getElementsByTagName('a')
+         
+         for(let y = 0; y <= anchor.length; y++){
+ 
+             if(anchor[y] != undefined){
+                 console.log(anchor[y].href)
+             }
+         }
+     }
+ }
+```
+This script will retrieve all the links available at the city/regency level, then copy those links and save them into an Excel file
+
+Finally, you can run the 'scrap_pilkada.py' file and wait until the scraping process is completed.
